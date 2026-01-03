@@ -1,0 +1,14 @@
+site_name: Eytan Ohana
+site_url: https://eytanohana.com
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+
+nav:
+  - Home: index.md
+
