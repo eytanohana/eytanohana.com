@@ -1,2 +1,2 @@
-# eytanohana.github.io
+# eytanohana.com
 My personal site
