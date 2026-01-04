@@ -32,16 +32,27 @@ jobs:
           mkdir -p docs/assets
           cp "_resume_repo/resumes/Eytan-Ohana-Resume.pdf"  ${{ env.CV_ASSET_PATH }}
 
-      - name: Commit & push if changed
+      - name: Detect changes
+        id: detect
         run: |
           if git diff --quiet; then
-            echo "No changes."
-            exit 0
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Commit & push if changed
+        if: steps.detect.outputs.changed == 'true'
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add ${{ env.CV_ASSET_PATH }}
           git commit -m "[bot]: sync latest resume"
           git push
+
+  deploy:
+    needs: sync
+    if: needs.sync.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
