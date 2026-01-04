@@ -26,6 +26,11 @@ Built to make core ideas explicit and easy to reason about.
 🔗 https://github.com/eytanohana/py-ds-academy  
 🔗 https://py-ds-academy.eytanohana.com
 
+
+```commandline
+$ pip install py-ds-academy
+```
+
 ---
 
 ## Developer Tooling
@@ -49,6 +54,12 @@ Built to reduce friction and make release workflows more predictable.
 An implementation and exploration of the Tower of Hanoi problem.
 
 🔗 https://github.com/eytanohana/Hanoi
+
+```commandline
+$ pip install hanoi-viz
+
+$ hanoi-viz
+```
 
 ---
 
