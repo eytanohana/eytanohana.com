@@ -1,5 +1,5 @@
 ---
-title: My CV
+title: CV
 description: My resume
 ---
 
