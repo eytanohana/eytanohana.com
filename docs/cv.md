@@ -3,7 +3,7 @@ title: CV
 description: My resume
 ---
 
-# Resume
+# My Resume
 
 <div align="right" markdown>
 [Download the PDF](/assets/Eytan-Ohana-Resume.pdf)
