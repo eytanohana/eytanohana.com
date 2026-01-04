@@ -12,6 +12,9 @@ jobs:
   sync:
     runs-on: ubuntu-latest
 
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
+
     permissions:
       contents: write # to commit back into the website repo
 
@@ -54,5 +57,9 @@ jobs:
   deploy:
     needs: sync
     if: needs.sync.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
