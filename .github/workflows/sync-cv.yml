@@ -1,0 +1,42 @@
+name: Sync CV
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # to commit back into the website repo
+
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+
+      - name: Checkout private resume repo
+        uses: actions/checkout@v4
+        with:
+          repository: eytanohana/Personal-Info
+          ref: master
+          token: ${{ secrets.SYNC_CV_PERSONAL_INFO_TOKEN }}
+          path: _resume_repo
+
+      - name: Copy latest resume files into website repo
+        run: |
+          mkdir -p docs/assets
+          cp "_resume_repo/resumes/Eytan-Ohana-Resume.pdf"  "docs/assets/Eytan-Ohana-Resume.pdf"
+
+      - name: Commit & push if changed
+        run: |
+          if git diff --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add static/resume
+          git commit -m "[bot]: sync latest resume"
+          git push
