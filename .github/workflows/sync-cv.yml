@@ -3,6 +3,11 @@ name: Sync CV
 on:
   workflow_dispatch:
 
+
+env:
+  CV_ASSET_PATH: "docs/assets/Eytan-Ohana-Resume.pdf"
+
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -25,7 +30,7 @@ jobs:
       - name: Copy latest resume files into website repo
         run: |
           mkdir -p docs/assets
-          cp "_resume_repo/resumes/Eytan-Ohana-Resume.pdf"  "docs/assets/Eytan-Ohana-Resume.pdf"
+          cp "_resume_repo/resumes/Eytan-Ohana-Resume.pdf"  ${{ env.CV_ASSET_PATH }}
 
       - name: Commit & push if changed
         run: |
@@ -37,6 +42,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add static/resume
+          git add ${{ env.CV_ASSET_PATH }}
           git commit -m "[bot]: sync latest resume"
           git push
