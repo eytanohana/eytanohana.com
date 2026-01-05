@@ -74,6 +74,15 @@ Focused on clarity and tradeoffs rather than performance tricks.
 
 ---
 
+### **Graph-Algorithms**
+**Python · Graphs · Algorithms**
+
+Notebooks illustrating graphs and different graph traversal algorithms.
+
+🔗 https://github.com/eytanohana/Graph-Algorithms
+
+---
+
 ## Small, Shippable Projects
 
 ### **Not-Not**
@@ -87,8 +96,6 @@ A small puzzle game clone where a player must quickly reason about boolean logic
 
 ## Earlier Work
 
-Older projects that shaped how I think, but don’t reflect how I build production systems today:
-
 - **Data-Structures (Java)** — CS foundations  
   https://github.com/eytanohana/Data-Structures
 
@@ -97,9 +104,6 @@ Older projects that shaped how I think, but don’t reflect how I build producti
 
 - **LSTM-for-stock-price-prediction** — Using LSTMs to model stock pricing
   https://github.com/eytanohana/LSTM-for-stock-price-prediction
-
-- **Graph-Algorithms** — notebooks illustrating graph traversal algorithms
-  https://github.com/eytanohana/Graph-Algorithms
 
 ---
 
