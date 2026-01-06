@@ -90,7 +90,8 @@ Notebooks explaining different topics in Data Science and Statistics.
 
 Includes an interactive app built with [streamlit](https://streamlit.io/).
 
-🔗 https://github.com/eytanohana/Data-Science-and-Statistics
+🔗 https://github.com/eytanohana/Data-Science-and-Statistics  
+🔗 https://data-science-stats.streamlit.app
 
 ---
 
@@ -101,7 +102,8 @@ Notebooks explaining different topics in Machine Learning.
 
 Includes an interactive app built (you guessed it) with [streamlit](https://streamlit.io/).
 
-🔗 https://github.com/eytanohana/Machine-Learning-Implementations
+🔗 https://github.com/eytanohana/Machine-Learning-Implementations  
+🔗 https://ml-implementations.streamlit.app
 
 ---
 
