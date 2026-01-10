@@ -42,7 +42,8 @@ Helpers for automating version bumps and releases when working with `uv`.
 
 Built to reduce friction and make release workflows more predictable.
 
-🔗 https://github.com/eytanohana/uv-release-tools
+🔗 https://github.com/eytanohana/uv-release-tools  
+🔗 https://github.com/marketplace/actions/uv-release-tools
 
 ---
 
