@@ -22,4 +22,4 @@ There's no signal when it drifts out of date. No feedback loop pulling it back t
 You haven't read a single sentence, but already a quiet decision has been made.
 The page is no longer authoritative. At best, it might be directionally useful. At worst, actively misleading.
 
-So, before the content even has a change, trust is already lost.
+So, before the content even has a chance, trust is already lost.
