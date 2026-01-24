@@ -9,9 +9,8 @@ description: My take on modern docs systems
 
 You ask a coworker, "hey, support says this service is acting weird - is there any documentation for it?"
 
-They send you a link to the page.
-
-You open it and the first thing you see, right at the top: **"Last Edited: 3 years ago."**
+They send you a link to the page. You open it and the first thing you see, right at the top.  
+**"Last Edited: 3 years ago."**
 
 
 That timestamp tells you something important about the system that produced this documentation.
@@ -33,3 +32,26 @@ That consistency suggests the issue isn’t effort or discipline, but structure.
 
 To understand why documentation so often becomes untrustworthy, it helps to stop thinking of it as a collection of pages
 and start thinking of it as a system. One designed with very few signals when it begins to fail.
+
+## Documentation as a System
+
+Any system can be understood by what it rewards, what it detects, and what happens when it fails. Internal documentation is no exception.
+Docs are usually written at moments of change: launches, handoffs, incidents, onboarding — but once created, they enter a system with
+very little feedback about whether they remain accurate or useful.
+
+The core failure mode is simple: documentation does not break when it is wrong. There is no alert when a page drifts
+out of date, no tests that fail when reality changes, and no visible signal when trust erodes.
+
+> Incorrect documentation can live indefinitely, "quietly filling up the graveyard."
+
+The system rewards creation over maintenance. Writing a doc is visible and finite; maintaining one is ongoing and largely invisible.
+Small updates rarely feel urgent, and deleting obsolete pages can feel risky. Over time, the system selects for new documentation
+rather than accurate documentation.
+
+Systems evolve continuously and when the documentation is decoupled from them, correctness becomes a matter of discipline rather than inevitability.
+
+Finally, most internal documentation has no natural reader. People don’t browse docs proactively — they arrive when something
+is already confusing or broken. In that context, even minor signs of staleness are enough to collapse trust before the content has a chance.
+
+The result is predictable. Documentation ages quietly, trust erodes early, and teams learn to route around the docs instead of relying on them.
+What looks like neglect is often just the system behaving as designed.
