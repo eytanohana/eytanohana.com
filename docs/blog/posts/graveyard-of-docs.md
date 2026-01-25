@@ -58,10 +58,14 @@ What looks like neglect is often just the system behaving as designed.
 
 ## Working Around the Docs
 
-Knowledge ends up in isolated silos, in individuals, where tribal knowledge rules. "Oh reach out to X, they understand Y"
-becomes the norm. As people enter and leave the organization information gets handed down, individual to individual, 
-until eventually the people left can only tell you how a system works but no one can say why it works that way.
+When documentation can’t be trusted, knowledge naturally concentrates in people. “Reach out to X, they understand Y” becomes the norm, 
+and informal ownership replaces written systems. It isn’t negligence, it’s adaptation. Asking a person provides context, feedback, 
+and confidence that static documentation cannot.
 
-Eventually, the day comes where you need to make a change in some microservice and there's no one around who has confident
-knowledge in the system. So, familiarly, you break your head reading the code, debugging it, reading logs, and mapping 
-out edge cases until you become the person with the most knowledge.
+Over time, that knowledge is handed down informally as people join and leave the organization. What survives is how 
+the system behaves, not why it behaves that way. Decisions, tradeoffs, and historical constraints fade, leaving behind 
+patterns that are followed but no longer understood.
+
+Eventually, someone needs to make a change and there is no longer a clear expert to ask. At that point, the system 
+itself becomes the documentation. Code is read, logs are traced, edge cases are rediscovered, and understanding is 
+rebuilt from first principles until a new person becomes “the one who knows,” and the cycle repeats.
