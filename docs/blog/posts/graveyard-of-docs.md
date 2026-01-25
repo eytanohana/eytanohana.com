@@ -12,7 +12,6 @@ You ask a coworker, "hey, support says this service is acting weird - is there a
 They send you a link to the page. You open it and the first thing you see, right at the top.  
 **"Last Edited: 3 years ago."**
 
-
 That timestamp tells you something important about the system that produced this documentation.
 Not just that it hasn't been updated recently, but that no one has been forced to notice that it hasn't been updated.
 
@@ -69,3 +68,16 @@ patterns that are followed but no longer understood.
 Eventually, someone needs to make a change and there is no longer a clear expert to ask. At that point, the system 
 itself becomes the documentation. Code is read, logs are traced, edge cases are rediscovered, and understanding is 
 rebuilt from first principles until a new person becomes “the one who knows,” and the cycle repeats.
+
+## The Hidden Cost
+
+Routing around documentation keeps work moving, but it carries a cost that’s easy to miss. When knowledge lives primarily
+in people, every question becomes an interruption, and every answer depends on availability. What works for a small team under
+low load scales poorly as systems and organizations grow.
+
+Over time, knowledge becomes brittle. Onboarding slows because understanding must be transferred person by person.
+Incidents rely on memory instead of shared reference points. Changes become riskier, not because the system is complex,
+but because its reasoning is no longer visible.
+
+None of this is accidental. It's the predictable outcome of a static documentation system that provides no feedback when it drifts out of date.
+The organization pays the price not all at once, but gradually, in coordination overhead, repeated rediscovery, and lost confidence.
