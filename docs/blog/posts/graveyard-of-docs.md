@@ -7,6 +7,10 @@ description: My take on modern docs systems
 
 *January 25, 2026*
 
+<figure markdown="span">
+    ![A Graveyard of Docs](../../assets/blog/grave-of-docs.png)
+</figure>
+
 You ask a coworker, "hey, support says this service is acting weird - is there any documentation for it?"
 
 They send you a link to the page. You open it and the first thing you see, right at the top.  
