@@ -81,3 +81,16 @@ but because its reasoning is no longer visible.
 
 None of this is accidental. It's the predictable outcome of a static documentation system that provides no feedback when it drifts out of date.
 The organization pays the price not all at once, but gradually, in coordination overhead, repeated rediscovery, and lost confidence.
+
+## Designing for Trust
+
+Documentation rarely fails because people don’t care enough to maintain it. More often, it fails because the surrounding systems
+provide no signals when trust begins to erode. In the absence of feedback, decay is invisible, and invisible problems rarely get fixed.
+
+Designing for trustworthy documentation means treating it less like an archive and more like an interface. Interfaces earn trust
+through clear signals, tight coupling to reality, and visible failure when assumptions break. Documentation that participates in
+the systems it describes, rather than sitting beside them, has a chance to remain relevant.
+
+The goal isn’t more documentation, or even better-written documentation. It’s documentation that makes its own state
+legible: when it is current, when it is drifting, and when it should no longer be trusted. Without that, the outcome is predictable.
+With it, trust becomes something the system can support rather than something people have to guess at.
