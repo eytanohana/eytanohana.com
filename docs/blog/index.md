@@ -5,7 +5,7 @@ hide:
   - toc
 ---
 
-These are a collection of my experiences on working code, systems, and building things.
+These are a collection of my experiences working on code, systems, and building things.
 
 ---
 
