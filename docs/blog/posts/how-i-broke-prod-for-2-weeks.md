@@ -1,9 +1,9 @@
 ---
-title: How I accidentally broke Production for 2 weeks
-description: How I accidentally broke Production for 2 weeks
+title: How I Accidentally Broke Production for 2 Weeks
+description: How a small, well-intentioned change quietly broke our deployment pipeline
 ---
 
-# How I accidentally broke Production for 2 weeks
+# How I Accidentally Broke Production for 2 Weeks
 
 *February 8, 2026*
 
@@ -11,52 +11,82 @@ description: How I accidentally broke Production for 2 weeks
     ![Servers on Fire](../../assets/blog/servers-on-fire.png)
 </figure>
 
-Yes, I broke production, no I didn't mean to, here's how.
+>Yes, I broke production. No, I didn't mean to. Here's how.
 
-## The Deployment Process
+## A Rickety Pipeline
 
-On a team I previously worked on, for a specific repository, we had our own custom deployment process out of the norm
-from the rest of the company. The repo itself was a legacy repo where whenever we merged a new feature to master
-we would manually run a deploy script. This would then take the latest changes in master in our repo and
-push it to a different repo, considered "production" and finally the latest master in the "prod" repo would be zipped up
-and stored in an S3 bucket. Later, when a service was running in production that needed the latest changes, it would
-manually download and extract the repo from S3 and insert it into the PHYTHONPATH for the service to use.
+On a team I previously worked on, one repository we worked on had a custom deployment process that differed from the rest of the company.
 
-## The Backstory
+It was a legacy setup. Whenever we merged a feature into `master`, we manually ran a deploy script that launched a jenkins CI/CD pipeline that would:
 
-Both repositories originally existed in BitBucket. Around the time I joined the company, a dev who was leaving the
-team for a different role in the company was tasked with finally migrating the repository to GitHub. What we didn't know
-in that migration was that the deployment now relied on a single ssh key in the dev's GitHub account. So for years we all
-went along making changes and deploying new features without a hiccup.
+1. Take the latest `master` from the **development repository**
+2. Push it into a separate **production repository**
+3. Zip the production repository
+4. Upload the archive to an S3 bucket
 
-Throughout that time, I would talk to this dev back-and-forth. He would reach out to me for help; I would reach out to him.
-One day in these calls, I kept noticing every time he would push a change to his own repo on his team, he would have to manually
-enter his username and password for the push. So one day I finally said, "hey I can help you set up your git so you don't need to do that on every push".
+When a service running in production needed the latest code, it would download the archive from S3, extract it, and add it to its `PYTHONPATH`.
 
-He agreed and we spent the next 10 minutes setting up ssh keys in his GitHub account. That's when we found some old pre-existing ssh key
-already stored in his account but we both weren't sure what it was for. So I made the mistake in saying "OK you have some old
-key in your account already, let's be safe and just remove it to start clean". We removed the key, and added his new one.
-He was now able to push without needing to manually insert his credentials each time. He said thanks; I said "no problem!" and we all moved on.
+It wasn't elegant, but it had been working for years.
 
-## What Happened Next
+## An Innocent Favor
 
-No alarm bells went off, everything seemed as normal until one day a project manager approaches us saying hey the customer is complaining;
-"they're saying that new feature we deployed for them last week didn't seem to be working". Naturally, the first thing I did was check the logs
-but none of the errors looked at all related to the feature we had deployed. So then I looked at the deployment for that feature in Jenkins.
+Both repositories originally lived in Bitbucket. Around the time I joined the company, a dev on the team who was soon transitioning to another role was tasked with migrating them to GitHub.
 
-I opened the pipeline and I see every step was green, aka everything was passing, so I moved on and checked the PROD repo on GitHub.
-This is where the first hint to the error came in place. It said the last commit was over 2 weeks ago which was definitely strange considering
-team members were redeploying the repository several times a week. It didn't make sense at all.
+What we didn't realize during that migration was that the deployment pipeline now relied on a **single SSH key** tied to that developer's GitHub account.
 
-So I went back to Jenkins and opened up each step (that again was marked green). To my horror, upon opening the step
-that pushed the changes from master in our "dev repo" to the "prod repo". I see the error message "Failed pushing to Prod Repo"
+For years, everything worked. We merged features, ran deployments, and never questioned it.
 
-Jenkins had silently failed on pushing the changes and instead just continued zipping the old code and pushing it to S3.
-So I started opening every deployment and seeing the same thing, "Failed to push"  but jenkins still marking the pipeline as passed.
+I stayed in touch with the dev after he moved teams. We'd help each other out from time to time, and I always noticed during our calls that every
+time he pushed code to his new team's repos, Git would prompt him for his username and password.
 
-Every deployment for the last 2 weeks had been silently failing, but somehow so far only one customer had noticed.
+Eventually I offered to help him configure SSH keys for his account so he wouldn't have to go through that anymore.
 
-## The quick fix
+He agreed, and we spent about ten minutes configuring the keys on his machine and GitHub account. While doing that, we noticed
+an **old SSH key** already present on his account. Neither of us recognized it or remembered what it was for.
 
-The first thing I did was immediately regenerate the keys in my own account and pushed the public key to Github.
-After that it was fixed!
+And here's the mistake. I said, "Ehh it's an old key. You can probably remove it and just start clean."
+
+We deleted it, added the new key, and everything worked. He could push without entering credentials. We both moved on.
+
+## The Silent Break
+
+Nothing broke immediately. No alerts fired. No deployments failed. Everything looked normal.
+
+Until a couple of weeks later, a project manager came to the team and said a customer was complaining: a feature we had "deployed" the previous week didn't seem to be working.
+
+The first thing I did was check the logs. Nothing stood out. No errors related to the new feature.
+
+Next, I checked the Jenkins pipeline for that deployment. Every step was green. The pipeline had passed.
+
+Then I checked the production repository on GitHub.
+
+The last commit was over **two weeks old**.
+
+That made no sense. We were redeploying multiple times a week.
+
+So I went back to Jenkins and started opening individual steps—each one still marked as successful. When I opened the step responsible for pushing code
+from the dev repo to the prod repo, I finally saw it: **"Failed pushing to Prod Repo."**
+
+Jenkins had failed to push the code… but continued the pipeline anyway.
+
+It zipped the old code.  
+Uploaded it to S3.  
+And marked the deployment as successful.
+
+Every deployment for the past two weeks had been packaging and redeploying stale code and thankfully only one customer had noticed so far.
+
+## The Fix
+
+Once we realized what had happened, the fix was simple.
+
+The deployment pipeline had been using the SSH key we deleted from that developer's GitHub account.
+
+I generated a new SSH key in my own account, added the public key to GitHub, and updated the pipeline.
+
+Deployments started working immediately.
+
+---
+
+This wasn't a story about a bad deployment system, or a bad engineer.
+
+It was a story about hidden coupling, silent failure, and how a small, well-intentioned cleanup can ripple through a system in unexpected ways.
