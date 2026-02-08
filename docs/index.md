@@ -1,6 +1,8 @@
 ---
 title: About Me
 description: I like to build things with code.
+hide:
+  - toc
 ---
 
 # Hi, I’m Eytan
