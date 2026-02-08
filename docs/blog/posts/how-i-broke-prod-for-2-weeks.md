@@ -56,3 +56,7 @@ So I started opening every deployment and seeing the same thing, "Failed to push
 
 Every deployment for the last 2 weeks had been silently failing, but somehow so far only one customer had noticed.
 
+## The quick fix
+
+The first thing I did was immediately regenerate the keys in my own account and pushed the public key to Github.
+After that it was fixed!
