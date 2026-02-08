@@ -36,7 +36,7 @@ nav = [
     "index.md",
     "portfolio.md",
     "cv.md",
-    { "My Takes" = ["blog/index.md", "blog/posts/graveyard-of-docs.md"] },
+    {"My Takes" = ["blog/index.md", "blog/posts/graveyard-of-docs.md", "blog/posts/how-i-broke-prod-for-2-weeks.md"] },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
