@@ -39,3 +39,20 @@ key in your account already, let's be safe and just remove it to start clean". W
 He was now able to push without needing to manually insert his credentials each time. He said thanks; I said "no problem!" and we all moved on.
 
 ## What Happened Next
+
+No alarm bells went off, everything seemed as normal until one day a project manager approaches us saying hey the customer is complaining;
+"they're saying that new feature we deployed for them last week didn't seem to be working". Naturally, the first thing I did was check the logs
+but none of the errors looked at all related to the feature we had deployed. So then I looked at the deployment for that feature in Jenkins.
+
+I opened the pipeline and I see every step was green, aka everything was passing, so I moved on and checked the PROD repo on GitHub.
+This is where the first hint to the error came in place. It said the last commit was over 2 weeks ago which was definitely strange considering
+team members were redeploying the repository several times a week. It didn't make sense at all.
+
+So I went back to Jenkins and opened up each step (that again was marked green). To my horror, upon opening the step
+that pushed the changes from master in our "dev repo" to the "prod repo". I see the error message "Failed pushing to Prod Repo"
+
+Jenkins had silently failed on pushing the changes and instead just continued zipping the old code and pushing it to S3.
+So I started opening every deployment and seeing the same thing, "Failed to push"  but jenkins still marking the pipeline as passed.
+
+Every deployment for the last 2 weeks had been silently failing, but somehow so far only one customer had noticed.
+
