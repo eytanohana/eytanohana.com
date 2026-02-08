@@ -1,2 +1,2 @@
 # eytanohana.com
-My personal site
+see my site at [eytanohana.com](eytanohana.com)
